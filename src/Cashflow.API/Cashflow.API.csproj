@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.11"/>
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2"/>
+        <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="7.2.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Cashflow.Application\Cashflow.Application.csproj" />
+      <ProjectReference Include="..\Cashflow.Communication\Cashflow.Communication.csproj" />
+      <ProjectReference Include="..\Cashflow.Exception\Cashflow.Exception.csproj" />
+      <ProjectReference Include="..\Cashflow.Infra\Cashflow.Infra.csproj" />
+    </ItemGroup>
+
+</Project>
