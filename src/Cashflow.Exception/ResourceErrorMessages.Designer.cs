@@ -56,5 +56,11 @@ namespace Cashflow.Exception {
                 return ResourceManager.GetString("TITLE_REQUIRED_ERROR", resourceCulture);
             }
         }
+        
+        internal static string EXPENSE_NOT_FOUND {
+            get {
+                return ResourceManager.GetString("EXPENSE_NOT_FOUND", resourceCulture);
+            }
+        }
     }
 }

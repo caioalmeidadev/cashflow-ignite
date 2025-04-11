@@ -10,6 +10,6 @@ internal class UnitOfWork:IUnitOfWork
     {
         _context = context;
     }
-    public void Commit() => _context.SaveChanges();
+    public async Task Commit() => await _context.SaveChangesAsync();
     
 }

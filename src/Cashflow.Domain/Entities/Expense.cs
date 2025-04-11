@@ -10,4 +10,7 @@ public class Expense
     public decimal Amount { get; set; }
     
     public PaymentType PaymentType { get; set; }
+    
+    public long userId { get; set; }
+    public User User { get; set; } = default!;
 }

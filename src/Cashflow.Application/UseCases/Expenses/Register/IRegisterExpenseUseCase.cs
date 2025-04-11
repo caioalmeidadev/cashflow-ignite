@@ -5,5 +5,5 @@ namespace Cashflow.Application.UseCases.Expenses.Register;
 
 public interface IRegisterExpenseUseCase 
 {
-    ResponseRegisteredExpenseJson Execute(ResquestRegisterExpenseJson request); 
+    Task<ResponseRegisteredExpenseJson> Execute(RequestExpenseJson request); 
 }

@@ -3,19 +3,20 @@ using Cashflow.Communication.Response;
 using Cashflow.Domain.Entities;
 using Cashflow.Domain.Repositories;
 using Cashflow.Exception.ExceptionBase;
+using Cashflow.Infra.Repositories.Expenses;
 
 namespace Cashflow.Application.UseCases.Expenses.Register;
 
 public class RegisterExpenseUseCase : IRegisterExpenseUseCase
 {
-    private readonly IExpensesRepository _expensesRepository;
+    private readonly IExpensesWriteOnlyRepository _expensesRepository;
     private readonly IUnitOfWork _unitOfWork;
-    public RegisterExpenseUseCase(IExpensesRepository repository,IUnitOfWork unitOfWork)
+    public RegisterExpenseUseCase(IExpensesWriteOnlyRepository repository,IUnitOfWork unitOfWork)
     {
         _expensesRepository = repository;
         _unitOfWork = unitOfWork;
     }
-    public ResponseRegisteredExpenseJson Execute(ResquestRegisterExpenseJson request)
+    public async Task<ResponseRegisteredExpenseJson> Execute(RequestExpenseJson request)
     {
        Validate(request);
 
@@ -27,15 +28,15 @@ public class RegisterExpenseUseCase : IRegisterExpenseUseCase
            PaymentType = (Domain.Enums.PaymentType)request.PaymentType
        };
        
-       _expensesRepository.Add(entity);
-       _unitOfWork.Commit();
+       await _expensesRepository.Add(entity);
+       await _unitOfWork.Commit();
        
        return new ResponseRegisteredExpenseJson{Title = request.Title}; 
     }
 
-    private void Validate(ResquestRegisterExpenseJson request)
+    private void Validate(RequestExpenseJson request)
     {
-        var validator = new RegisterExpensesValidator();
+        var validator = new ExpensesValidator();
         var result = validator.Validate(request);
         if (!result.IsValid)
         {

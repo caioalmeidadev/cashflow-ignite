@@ -3,9 +3,9 @@ using FluentValidation;
 
 namespace Cashflow.Application.UseCases.Expenses.Register;
 
-public class RegisterExpensesValidator:AbstractValidator<ResquestRegisterExpenseJson>
+public class ExpensesValidator:AbstractValidator<RequestExpenseJson>
 {
-    public RegisterExpensesValidator()
+    public ExpensesValidator()
     {
         RuleFor(x => x.Title).NotEmpty().WithMessage("Title is required.");
         RuleFor(x => x.Amount).GreaterThan(0).WithMessage("Amount must be greater than zero.");
